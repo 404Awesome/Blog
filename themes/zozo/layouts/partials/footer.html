@@ -1,0 +1,31 @@
+<!-- 页脚 -->
+<style>
+  #hitokoto {
+    overflow: hidden;
+    margin: 0 auto;
+    width: 80%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 16px;
+    color: #424242;
+  }
+
+  .footer {
+    padding: 30px 0px;
+  }
+</style>
+
+<footer class="footer">
+  <p id="hitokoto">:D 获取中...</p>
+</footer>
+
+<script>
+  fetch("https://v1.hitokoto.cn")
+    .then((response) => response.json())
+    .then((data) => {
+      const hitokoto = document.getElementById("hitokoto");
+      hitokoto.href = "https://hitokoto.cn/?uuid=" + data.uuid;
+      hitokoto.innerText = data.hitokoto;
+    })
+    .catch((err) => err);
+</script>

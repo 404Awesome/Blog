@@ -1,0 +1,75 @@
+{{ partial "head.html" . }}
+
+<body>
+    <div class="main animate__animated animate__fadeInDown">
+        {{ partial "nav.html" . }}
+        {{ partial "header.html" . }}
+        <div class="content">
+            <div class="post_page">
+                <div class="post animate__animated animate__fadeInDown">
+                    <div class="post_title post_detail_title">
+                        <h2><a href='{{ .RelPermalink }}'>{{ .Title }}</a></h2>
+                        <span class="date">{{ .Date.Format "2006.01.02" }}</span>
+                    </div>
+                    <div class="post_content markdown">{{ .Content }}</div>
+                    <div class="post_footer">
+                        {{ with .Params.tags }}
+                        <!-- 声明 -->
+                        <div id="link">
+                            <p>本博客所有文章除特别声明外，均采用 CC BY-SA 3.0协议 。转载请注明出处！</p>
+                            <p><span id="link_href"></span><i class="ri-file-copy-2-line link_btn"></i></p>
+                        </div>
+                        <!-- 标签 -->
+                        <div class="meta">
+                            <div class="info">
+                                <span class="field tags">
+                                    <i class="ri-price-tag-2-line"></i>
+                                    {{ range . }}
+                                    <a href="{{ "/tags" | absURL }}/{{ . | urlize }}/">{{ . }}</a>
+                                    {{ end }}
+                                </span>
+                            </div>
+                        </div>
+                        {{ end }}
+                    </div>
+                </div>
+                <!-- 评论系统 -->
+                {{ if .Site.Params.valine.enable }}
+                {{ partial "comments.html" . }}
+                {{ end }}
+            </div>
+        </div>
+    </div>
+    <a id="back_to_top" href="#" class="back_to_top"><i class="ri-arrow-up-s-line"></i></a>
+    {{ partial "footer.html" . }}
+    {{ partial "js.html" . }}
+</body>
+
+<!-- 处理本文连接 -->
+<script>
+    (function (){
+        // 处理图标
+        function handleIcon (remove, target){
+            this.classList.remove(remove);
+            this.classList.add(target);
+        }
+
+        let hrefEl = document.getElementById("link_href");
+        let copyBtn = document.getElementsByClassName("link_btn")[0];
+        if (hrefEl){
+            hrefEl.innerText = `文章链接: ${location.href}`;
+            
+            copyBtn.onclick = (event) => {
+                // 写入链接
+                navigator.clipboard.writeText(`文章转载自: ${location.href}`)
+                // 切换图标
+                handleIcon.call(event.target, "ri-file-copy-2-line", "ri-check-line");
+                let timer = setTimeout(() => {
+                    handleIcon.call(event.target, "ri-check-line", "ri-file-copy-2-line");
+                    clearTimeout(timer)
+                }, 1000)
+            }
+        }
+    })();
+</script>
+</html>

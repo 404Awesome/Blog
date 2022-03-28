@@ -1,0 +1,21 @@
+{{ partial "head.html" . }}
+
+<body>
+    <div class="main animate__animated animate__fadeInDown">
+        {{ partial "nav.html" . }}
+        {{ partial "header.html" . }}
+        <div class="content">
+            <div class="page_tags">
+                <i class="ri-error-warning-fill error"></i>
+                <h1>文章跑路了</h1>
+                <h3><a href="{{ .Site.BaseURL }}">返回{{ i18n "home" }}</a></h3>
+            </div>
+
+            <div class="pagination"></div>
+        </div>
+    </div>
+    {{ partial "footer.html" . }}
+    {{ partial "js.html" . }}
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+/public
+.DS_Store
+.vscode
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+push.sh
