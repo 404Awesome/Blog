@@ -3,7 +3,6 @@ title: 一键安装HomeBrew
 toc: true
 date: 2022-03-15 21:03:05
 tags: ['Mac', 'HomeBrew']
-categories: 工具
 ---
 
 ### 项目地址

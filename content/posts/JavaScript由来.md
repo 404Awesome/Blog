@@ -1,7 +1,7 @@
 ---
 title: "JavaScript由来"
-date: 2020-03-26T23:17:41+08:00
-draft: false
+date: 2020-03-26T23:17:41+08:00 
+toc: true
 tags: ["JavaScript"]
 ---
 
